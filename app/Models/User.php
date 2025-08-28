@@ -21,6 +21,17 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'cep',
+        'logradouro',
+        'bairro',
+        'cidade',
+        'estado',
+        'complemento',
+        'telefone',
+        'data_de_nascimento',
+        'cpf',
+        'saldo',
+        'foto',
     ];
 
     /**
@@ -43,6 +54,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'data_de_nascimento' => 'date',
         ];
     }
 }
