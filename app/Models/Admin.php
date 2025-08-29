@@ -10,15 +10,10 @@ class Admin extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'adm';
-
-    protected $primaryKey = 'id_adm';
-
-
     protected $fillable = [
-        'nome',
+        'name',
         'email',
-        'senha',
+        'password',
         'cep',
         'logradouro',
         'numero',
@@ -33,10 +28,14 @@ class Admin extends Authenticatable
     ];
 
     protected $hidden = [
-        'senha',
+        'password',
+        'remember_token',
     ];
+
 
     protected $casts = [
         'data_de_nascimento' => 'date',
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
     ];
 }

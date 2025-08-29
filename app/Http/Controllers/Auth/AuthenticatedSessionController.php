@@ -14,8 +14,10 @@ class AuthenticatedSessionController extends Controller
     /**
      * Display the login view.
      */
-    public function create(): View
+    public function create(): View | RedirectResponse
     {
+        if(Auth::guard('adm')->check())
+            return redirect() -> route('admin.dashboard');
         return view('auth.login');
     }
 
@@ -24,11 +26,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
 
-        $request->session()->regenerate();
+         if(auth('web')->attempt($request->only(['email','password'])))
+            return redirect()-> route ( 'dashboard');
 
-        return redirect()->intended(route('dashboard', absolute: false));
+         else if(auth('adm')->attempt($request->only( ['email','password'])))
+            return redirect()-> route ( 'admin.dashboard');
+
+         return back()->withErros("Credenciais não cadastradas no sitema.");
+         // $request->authenticate();
+
+        // $request->session()->regenerate();
+
+        // return redirect()->intended(route('dashboard', absolute: false));
     }
 
     /**
@@ -36,7 +46,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('web')->logout();
+        if(Auth::guard('web')->check())
+            Auth::guard('web')->logout();
+
+        if(Auth::guard('adm')->check())
+            Auth::guard('adm')->logout();
 
         $request->session()->invalidate();
 
