@@ -9,6 +9,8 @@ use App\Models\User;
 
 class Produto extends Model
 {
+
+    use HasFactory;
     protected $table = 'produto';
     protected $primaryKey = 'id';
 

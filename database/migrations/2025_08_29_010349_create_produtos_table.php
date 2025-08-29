@@ -18,7 +18,8 @@ return new class extends Migration
             $table->decimal('preco', 8, 2);
             $table->text('descricao');
             $table->integer('quantidade');
-            $table->foreignId('categoria_id')->constrained('categoria','id_categoria');
+            $table->unsignedBigInteger('categoria_id');
+            $table->foreign('categoria_id')->references('id_categoria')->on('categoria');
             $table->foreignId('anunciante_id')->constrained('users');
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('produto');
     }
 };
