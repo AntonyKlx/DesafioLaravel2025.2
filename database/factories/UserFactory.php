@@ -27,8 +27,19 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
+            'cep' => fake()->numerify('########'),
+            'logradouro' => fake()->streetName(),
+            'bairro' => fake()->citySuffix(),
+            'cidade' => fake()->city(),
+            'estado' => fake()->stateAbbr(),
+            'complemento' => fake()->secondaryAddress(),
+            'telefone' => fake()->numerify('###########'),
+            'data_de_nascimento' => fake()->date('Y-m-d', '2005-01-01'),
+            'cpf' => fake()->numerify('###########'),
+            'saldo' => fake()->randomFloat(2, 0, 1000),
+            'foto' => 'default.png',
         ];
     }
 

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('cidade');
             $table->string('estado', 2);
             $table->string('complemento')->nullable();
-            $table->string('telefone', 15);
+            $table->string('telefone', 25);
             $table->date('data_de_nascimento');
             $table->string('cpf', 11);
             $table->decimal('saldo', 8, 2);
