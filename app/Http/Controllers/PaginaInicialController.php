@@ -17,9 +17,7 @@ class PaginaInicialController extends Controller
             ->orderByDesc('created_at')
             ->get();
 
-        return view('pagina-inicial', [
-            'produtos' => $produto,
-        ]);
+        return view('pagina-inicial', ['produtos' => $produto]);
     }
 
     // faz o metodo que chama a view se o usuario estiver autenticado
