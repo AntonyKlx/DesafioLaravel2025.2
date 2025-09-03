@@ -28,7 +28,7 @@ class AuthenticatedSessionController extends Controller
     {
 
          if(auth('web')->attempt($request->only(['email','password'])))
-            return redirect()-> route ( 'dashboard');
+            return redirect()-> route ( 'pagina-inicial');
 
          else if(auth('adm')->attempt($request->only( ['email','password'])))
             return redirect()-> route ( 'admin.dashboard');
