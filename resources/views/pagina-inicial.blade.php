@@ -14,7 +14,7 @@
                     <input type="text" name="pesquisa" placeholder="Pesquisar produto..." class=" p-2 m-2">
                     <button type="submit" class= "text-black font-bold p-2 bg-white">Pesquisar</button>
                 </span>
-                <h1>Categorias</h1>
+                <h1 class="text-white">Categorias</h1>
                 <div class="flex justify-center gap-4 mb-4">
                     <a href="{{ route('pagina-inicial') }}" class="p-2 bg-gray-200">Todas</a>
                     @foreach ($categorias as $categoria)
@@ -53,6 +53,9 @@
                 @endif
             </div>
         @endforeach
+        <div class="flex justify-center mt-4 p-10">
+            {{ $produtos->appends(request()->query())->links() }}
+        </div>
     </div>
 
 </x-app-layout>

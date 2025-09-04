@@ -27,16 +27,20 @@ class PaginaInicialController extends Controller
             $query->where('id_categoria', $categoriaId);
         }
 
-        $produto = $query->orderByDesc('created_at')->get();
+        $produto = $query->orderByDesc('created_at')->paginate(10);
         $categorias = \App\Models\Categoria::all();
 
-        return view('pagina-inicial', [ 'produtos' => $produto, 'categorias' => $categorias]);
+        return view('pagina-inicial', [
+            'produtos' => $produto,
+            'categorias' => $categorias,
+            'categoriaSelecionada' => $categoriaId
+        ]);
     }
 
     // faz o metodo que chama a view se o usuario estiver autenticado
     public function __invoke(){
         $user = Auth::user();
-        $produtos = Produto::all();
+        $produtos = Produto::orderByDesc('created_at')->paginate(10);
         $categorias = \App\Models\Categoria::all();
 
         return view('pagina-inicial',[
@@ -48,7 +52,7 @@ class PaginaInicialController extends Controller
 
     //to usando para filtrar por categoria
     public function categoria($id){
-        $produtos = Produto::where('categoria_id', $id)->get();
+        $produtos = Produto::where('categoria_id', $id)->paginate(10);
         $categorias = \App\Models\Categoria::all();
 
         return view ('pagina-inicial', [
