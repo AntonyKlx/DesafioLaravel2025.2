@@ -7,7 +7,7 @@
     </x-slot>
 
 
-
+    <h1>Categoria: </h1>
     <div class="">
         <div class="flex justify-center">
             <form action="{{route ('produtos.index') }}">
@@ -18,7 +18,7 @@
                 <select name="categoria" class="p-2 m-2">
                     <option value="">Todas as categorias</option>
                         @foreach($categorias as $categoria)
-                            <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria->id ? 'selected' : '' }} href="{{ route('produtos.categoria', ['id' => $categoria->id]) }}">
+                        <option value="{{ $categoria->id }}" {{ request('categoria') == $categoria->id ? 'selected' : '' }}>
                         {{ $categoria->nome }}
                     </option>
                     @endforeach

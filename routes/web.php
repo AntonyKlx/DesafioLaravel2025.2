@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Categoria;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/produtos', [PaginaInicialController::class, 'index'])->name('produtos.index');
+
+Route::get('/categorias', [PaginaInicialController::class, 'index'])->name('produtos.categoria');
 
 // Route::get('/pagina-inicial', PaginaInicialController::class, function (){
 // })->middleware('auth', 'verified')->name('pagina-inicial');
