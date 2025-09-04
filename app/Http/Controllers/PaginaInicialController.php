@@ -40,7 +40,7 @@ class PaginaInicialController extends Controller
     // faz o metodo que chama a view se o usuario estiver autenticado
     public function __invoke(){
         $user = Auth::user();
-        $produtos = Produto::orderByDesc('created_at')->paginate(10);
+        $produtos = Produto::orderByDesc('created_at')->paginate(9);
         $categorias = \App\Models\Categoria::all();
 
         return view('pagina-inicial',[
@@ -52,7 +52,7 @@ class PaginaInicialController extends Controller
 
     //to usando para filtrar por categoria
     public function categoria($id){
-        $produtos = Produto::where('categoria_id', $id)->paginate(10);
+        $produtos = Produto::where('categoria_id', $id)->paginate(9);
         $categorias = \App\Models\Categoria::all();
 
         return view ('pagina-inicial', [

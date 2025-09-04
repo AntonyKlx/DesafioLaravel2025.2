@@ -7,19 +7,20 @@
 
 
 
-    <div class="">
-        <div class="flex justify-center">
+    <div class=" border flex justify-center">
+        <div class="border border-red-500 w-full">
             <form action="{{ route('produtos.index') }}">
-                <span class="flex justify-center">
-                    <input type="text" name="pesquisa" placeholder="Pesquisar produto..." class=" p-2 m-2">
-                    <button type="submit" class= "text-black font-bold p-2 bg-white">Pesquisar</button>
+                <span class="flex justify-center pt-5">
+                    <input type="text" name="pesquisa" placeholder="Pesquisar produto..."
+                        class=" p-2 w-1/2 rounded-l-lg">
+                    <button type="submit" class= "text-white font-bold p-2 bg-blue-600 rounded-r-lg">Pesquisar</button>
                 </span>
-                <h1 class="text-white">Categorias</h1>
-                <div class="flex justify-center gap-4 mb-4">
-                    <a href="{{ route('pagina-inicial') }}" class="p-2 bg-gray-200">Todas</a>
+                <h1 class="text-white justify-center flex font-black m-3">Categorias</h1>
+                <div class="flex justify-center gap-4 border border-green-600 ">
+                    <a href="{{ route('pagina-inicial') }}" class="p-2 bg-gray-200 rounded-lg">Todas</a>
                     @foreach ($categorias as $categoria)
                         <a href="{{ route('produtos.categoria', ['id' => $categoria->id_categoria]) }}"
-                            class="p-2 bg-gray-200">
+                            class="p-2 bg-gray-200 rounded-lg">
                             {{ $categoria->nome }}
                         </a>
                     @endforeach
@@ -28,31 +29,43 @@
         </div>
     </div>
 
-    <div class="py-12 mx-auto flex justify-center">
-        <span class=" text-white font-bold text-2xl p-4">{{ __('Produtos') }}</span>
+    <div class=" pt-6 mx-auto flex justify-center">
+        <span class=" text-white font-bold text-2xl p-1">
+            <h1>Produtos</h1>
+        </span>
     </div>
     <div>
-        @foreach ($produtos as $produto)
-            <div class="flex py-4">
-                <div class="text-black justify-center items-center border mx-auto bg-white p-2">
-                    <img src="{{ $produto->foto }}" alt="foto">
-                    <h3>{{ $produto->nome }}</h3>
-                    <p>Preço:
-                        <span class="font-bold text-lg"> R${{ $produto->preco }}</span>
-                    </p>
-                    <span class="bg-blue-500 text-lg font-bold">
-                        <a href="">
-                            Visulizar
-                        </a>
-                    </span>
+        <div class=" border-t-2 border-gray-600 flex flex-wrap gap-x-20">
+            @foreach ($produtos as $produto)
+                <div
+                    class=" py-4 border border-slate-600 text-center h-72 w-1/4 mx-auto my-4 fill bg-slate-800 rounded-xl">
+                    <div
+                        class="text-black justify-center items-center border-4 border-red-600 mx-auto bg-white p-2 h-44">
+                        <img src="{{ $produto->foto }}" alt="foto">
+                        <h3 class=" font-extrabold text-xl">{{ $produto->nome }}</h3>
+                        <p>Preço:
+                            <span class="font-bold text-lg"> R${{ $produto->preco }}</span>
+                        </p>
+                        <div class="flex justify-center mt-4">
+                            <a href="">
+                                <span class=" bg-slate-200 p-2 text-lg font-bold rounded">
+                                    Visulizar
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+                    @if (Auth::guard('web')->check())
+                        <div class="flex justify-center mt-4">
+                            <a href="">
+                                <span class="bg-lime-500 p-4 font-extrabold text-white rounded">
+                                    Comprar
+                                </span>
+                            </a>
+                        </div>
+                    @endif
                 </div>
-                @if (Auth::guard('web')->check())
-                    <span>
-                        <a class="bg-white p-4" href="">Comprar</a>
-                    </span>
-                @endif
-            </div>
-        @endforeach
+            @endforeach
+        </div>
         <div class="flex justify-center mt-4 p-10">
             {{ $produtos->appends(request()->query())->links() }}
         </div>
