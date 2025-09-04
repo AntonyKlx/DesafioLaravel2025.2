@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/produtos', [PaginaInicialController::class, 'index'])->name('produtos.index');
 
-Route::get('/categorias', [PaginaInicialController::class, 'index'])->name('produtos.categoria');
+Route::get('/categorias/{id}', [PaginaInicialController::class, 'categoria'])->name('produtos.categoria');
 
 // Route::get('/pagina-inicial', PaginaInicialController::class, function (){
 // })->middleware('auth', 'verified')->name('pagina-inicial');

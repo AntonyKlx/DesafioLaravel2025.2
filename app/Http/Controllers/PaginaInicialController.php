@@ -45,9 +45,16 @@ class PaginaInicialController extends Controller
         ]);
     }
 
+
+    //to usando para filtrar por categoria
     public function categoria($id){
-        $produtos = Produto::where('id_categoria', $id)->get();
-        return view ('pagina-inicial', ['produtos' => $produtos]);
+        $produtos = Produto::where('categoria_id', $id)->get();
+        $categorias = \App\Models\Categoria::all();
+
+        return view ('pagina-inicial', [
+            'produtos' => $produtos,
+            'categorias' => $categorias
+        ]);
     }
 
 };
