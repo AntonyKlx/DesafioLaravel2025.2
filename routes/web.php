@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaginaInicialController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\ProdutoPageController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -34,17 +35,14 @@ Route::get('/produtos', [PaginaInicialController::class, 'index'])->name('produt
 
 Route::get('/categorias/{id}', [PaginaInicialController::class, 'categoria'])->name('produtos.categoria');
 
-// Route::get('/pagina-inicial', PaginaInicialController::class, function (){
-// })->middleware('auth', 'verified')->name('pagina-inicial');
-
 Route::get('/pagina-inicial', function () {
     if (Auth::guard('web')->check() || Auth::guard('adm')->check()) {
-    // if (isUserLoggedIn() || isAdminLoggedIn()) {
         return app(PaginaInicialController::class)->__invoke();
     }
     return redirect()->route('login');
 })->name('pagina-inicial');
 
+Route::get('/produto-page/{id}', [ProdutoPageController::class, 'detalhes'])->name('produto.page');
 
 
 require __DIR__.'/auth.php';

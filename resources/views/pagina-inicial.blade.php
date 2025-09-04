@@ -34,28 +34,26 @@
             <h1>Produtos</h1>
         </span>
     </div>
-    <div>
-        <div class=" border-t-2 border-gray-600 flex flex-wrap gap-x-20">
+    <div class="px-20 border-t-2 border-gray-600">
+        <div class=" flex flex-wrap gap-x-20">
             @foreach ($produtos as $produto)
-                <div
-                    class=" py-4 border border-slate-600 text-center h-72 w-1/4 mx-auto my-4 fill bg-slate-800 rounded-xl">
-                    <div
-                        class="text-black justify-center items-center border-4 border-red-600 mx-auto bg-white p-2 h-44">
-                        <img src="{{ $produto->foto }}" alt="foto">
+                <div class=" py-4 border border-slate-600 text-center w-1/4 mx-auto my-4 fill bg-slate-800 rounded-xl">
+                    <div class="text-black justify-center items-center border-2 border-red-600 mx-auto">
+                            <img class="w-full h-full" src="{{ $produto->foto }}" alt="foto">
+                    </div>
                         <h3 class=" font-extrabold text-xl">{{ $produto->nome }}</h3>
                         <p>Preço:
                             <span class="font-bold text-lg"> R${{ $produto->preco }}</span>
                         </p>
                         <div class="flex justify-center mt-4">
-                            <a href="">
+                            <a href="{{ route('produto.page', ['id' => $produto->id]) }}">
                                 <span class=" bg-slate-200 p-2 text-lg font-bold rounded">
                                     Visulizar
                                 </span>
                             </a>
                         </div>
-                    </div>
                     @if (Auth::guard('web')->check())
-                        <div class="flex justify-center mt-4">
+                        <div class="flex justify-center my-7">
                             <a href="">
                                 <span class="bg-lime-500 p-4 font-extrabold text-white rounded">
                                     Comprar
@@ -65,6 +63,7 @@
                     @endif
                 </div>
             @endforeach
+            </div>
         </div>
         <div class="flex justify-center mt-4 p-10">
             {{ $produtos->appends(request()->query())->links() }}

@@ -27,7 +27,7 @@ class PaginaInicialController extends Controller
             $query->where('id_categoria', $categoriaId);
         }
 
-        $produto = $query->orderByDesc('created_at')->paginate(10);
+        $produto = $query->orderByDesc('created_at')->paginate(9);
         $categorias = \App\Models\Categoria::all();
 
         return view('pagina-inicial', [
@@ -37,7 +37,7 @@ class PaginaInicialController extends Controller
         ]);
     }
 
-    // faz o metodo que chama a view se o usuario estiver autenticado
+    // faz o metodo que retorna a view carregando 9 produtos mais recentes
     public function __invoke(){
         $user = Auth::user();
         $produtos = Produto::orderByDesc('created_at')->paginate(9);
