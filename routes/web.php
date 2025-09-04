@@ -39,11 +39,12 @@ Route::get('/categorias/{id}', [PaginaInicialController::class, 'categoria'])->n
 
 Route::get('/pagina-inicial', function () {
     if (Auth::guard('web')->check() || Auth::guard('adm')->check()) {
+    // if (isUserLoggedIn() || isAdminLoggedIn()) {
         return app(PaginaInicialController::class)->__invoke();
     }
-
     return redirect()->route('login');
 })->name('pagina-inicial');
+
 
 
 require __DIR__.'/auth.php';

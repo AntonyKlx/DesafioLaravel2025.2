@@ -20,7 +20,7 @@ if(! function_exists('isUserLoggedIn')){
 if(! function_exists('isAdminLoggedIn')){
     function isAdminLoggedIn()
     {
-        return Auth::guard('admin')->check();
+        return Auth::guard('adm')->check();
     }
 }
 
@@ -30,7 +30,7 @@ if(! function_exists('getCurrentLoggedinUser')){
             return Auth::guard('web')->user();
         }
         if(isAdminLoggedIn()){
-            return Auth::guard('admin')->user();
+            return Auth::guard('adm')->user();
         }
         return null;
     }
