@@ -24,7 +24,7 @@ class ProdutoFactory extends Factory
         $categorias = Categoria::pluck('id_categoria');
         $users = User::pluck('id');
         return [
-            'foto' => 'https://picsum.photos/400/400?random=',
+            'foto' => 'https://picsum.photos/seed/' . $this->faker->unique()->numberBetween(1, 1000) . '/400/400',
             'nome' => $this->faker->word(),
             'preco' => $this->faker->randomFloat(2, 10, 1000),
             'descricao' => $this->faker->sentence(),
