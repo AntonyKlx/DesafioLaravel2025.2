@@ -2,12 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaginaInicialController;
-use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\ProdutoPageController;
-use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\ProdutosController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Categoria;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +41,8 @@ Route::get('/pagina-inicial', function () {
 })->name('pagina-inicial');
 
 Route::get('/produto-page/{id}', [ProdutoPageController::class, 'detalhes'])->name('produto.page');
+
+Route::get('gerenciador-produtos', [ProdutosController::class, 'index'])->name('gerenciador.produtos');
 
 
 require __DIR__.'/auth.php';
