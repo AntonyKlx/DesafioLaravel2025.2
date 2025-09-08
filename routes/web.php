@@ -45,4 +45,5 @@ Route::get('/produto-page/{id}', [ProdutoPageController::class, 'detalhes'])->na
 Route::get('gerenciador-produtos', [ProdutosController::class, 'index'])->name('gerenciador.produtos');
 
 
+
 require __DIR__.'/auth.php';
