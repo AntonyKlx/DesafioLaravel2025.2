@@ -44,6 +44,14 @@ Route::get('/produto-page/{id}', [ProdutoPageController::class, 'detalhes'])->na
 
 Route::get('gerenciador-produtos', [ProdutosController::class, 'index'])->name('gerenciador.produtos');
 
+Route::get('gerenciador-produtos/{id}', [ProdutosController::class, 'show'])->name('gerenciador.show');
 
+Route::get('create-produto', [ProdutosController::class, 'create'])->name('produto.create');
+Route::post('create-produto', [ProdutosController::class, 'store']);
+
+Route::get('edit-produto/{produto}', [ProdutosController::class, 'edit'])->name('produto.edit');
+Route::put('edit-produto/{produto}', [ProdutosController::class, 'update'])->name('produto.update');
+
+Route::delete('delete-produto/{id}', [ProdutosController::class, 'destroy'])->name('produto.delete');
 
 require __DIR__.'/auth.php';

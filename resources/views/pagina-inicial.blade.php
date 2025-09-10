@@ -39,7 +39,7 @@
             @foreach ($produtos as $produto)
                 <div class=" py-4 border border-slate-600 text-center w-1/4 mx-auto my-4 fill bg-slate-800 rounded-xl">
                     <div class="text-black justify-center items-center border-2 border-red-600 mx-auto">
-                            <img class="w-full h-full" src="{{ $produto->foto }}" alt="foto">
+                            <img class="w-full h-full" src="{{ asset($produto->foto) }}" alt="foto">
                     </div>
                         <h3 class=" font-extrabold text-xl">{{ $produto->nome }}</h3>
                         <p>Preço:

@@ -3,7 +3,7 @@
         <div class="p-3 flex justify-between bg-slate-800 w-11/12 my-5 rounded-xl h-full">
             <div class="w-11/12 h-auto border border-pink-600">
                 <div class="w-full h-auto">
-                    <img src="{{ $produto->foto }}" alt="foto" class="">
+                    <img src="{{ asset($produto->foto) }}" alt="foto" class="">
                     <div class=" font-normal text-base text-white">
                         <p>{{$produto->descricao}}</p>
                     </div>

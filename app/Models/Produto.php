@@ -33,4 +33,5 @@ class Produto extends Model
     {
         return $this->belongsTo(User::class, 'anunciante_id');
     }
+
 }
