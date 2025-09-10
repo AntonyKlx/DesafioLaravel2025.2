@@ -124,6 +124,15 @@ class ProdutosController extends Controller
 
     public function destroy($id){
         $produto = Produto::find($id);
+
+         if ($produto->foto) {
+            $foto = public_path($produto->foto);
+
+            if (file_exists($foto)) {
+                unlink($foto);
+            }
+        }
+
         $produto->delete();
         return redirect()->route('gerenciador.produtos');
     }
