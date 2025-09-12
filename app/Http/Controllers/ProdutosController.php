@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ProdutosController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         // $termoDePesquisa = $request->input('pesquisa');
         $query = Produto::query();

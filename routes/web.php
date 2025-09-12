@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HistoricoVendasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaginaInicialController;
 use App\Http\Controllers\ProdutoPageController;
@@ -40,18 +41,20 @@ Route::get('/pagina-inicial', function () {
     return redirect()->route('login');
 })->name('pagina-inicial');
 
-Route::get('/produto-page/{id}', [ProdutoPageController::class, 'detalhes'])->name('produto.page');
+Route::get('/produto-page/{id}', [ProdutoPageController::class, 'detalhes'])->middleware(['auth:web,adm'])->name('produto.page');
 
-Route::get('gerenciador-produtos', [ProdutosController::class, 'index'])->name('gerenciador.produtos');
+Route::get('gerenciador-produtos', [ProdutosController::class, 'index'])->middleware(['auth:web,adm'])->name('gerenciador.produtos');
 
-Route::get('gerenciador-produtos/{id}', [ProdutosController::class, 'show'])->name('gerenciador.show');
+Route::get('gerenciador-produtos/{id}', [ProdutosController::class, 'show'])->middleware(['auth:web,adm'])->name('gerenciador.show');
 
-Route::get('create-produto', [ProdutosController::class, 'create'])->name('produto.create');
+Route::get('create-produto', [ProdutosController::class, 'create'])->middleware(['auth:web,adm'])->name('produto.create');
 Route::post('create-produto', [ProdutosController::class, 'store']);
 
-Route::get('edit-produto/{produto}', [ProdutosController::class, 'edit'])->name('produto.edit');
-Route::put('edit-produto/{produto}', [ProdutosController::class, 'update'])->name('produto.update');
+Route::get('edit-produto/{produto}', [ProdutosController::class, 'edit'])->middleware(['auth:web,adm'])->name('produto.edit');
+Route::put('edit-produto/{produto}', [ProdutosController::class, 'update'])->middleware(['auth:web,adm'])->name('produto.update');
 
-Route::delete('delete-produto/{id}', [ProdutosController::class, 'destroy'])->name('produto.delete');
+Route::delete('delete-produto/{id}', [ProdutosController::class, 'destroy'])->middleware(['auth:web,adm'])->name('produto.delete');
+
+Route::get('historico-vendas', [HistoricoVendasController::class, 'index'])->middleware(['auth:web,adm'])->name('historico.vendas');
 
 require __DIR__.'/auth.php';
