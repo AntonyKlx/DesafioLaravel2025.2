@@ -3,13 +3,6 @@
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 
-if(! function_exists('human_case')) {
-    function human_case($string)
-    {
-        return Str::tittle(__(Str::snake(Str::studly($string)," ")));
-    }
-}
-
 if(! function_exists('isUserLoggedIn')){
     function isUserLoggedIn()
     {

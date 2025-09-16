@@ -15,7 +15,7 @@
         <div>
             <div class="flex justify-center">
                 <table class=" w-5/6 text-center items-center h-full">
-                    <tr class=" bg-purple-500 w-60">
+                    <tr class=" bg-purple-500 w-60 text-white">
                         <th>ID</th>
                         <th>NOME</th>
                         <th>ANUNCIANTE</th>
