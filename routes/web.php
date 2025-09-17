@@ -57,4 +57,6 @@ Route::delete('delete-produto/{id}', [ProdutosController::class, 'destroy'])->mi
 
 Route::get('historico-vendas', [HistoricoVendasController::class, 'index'])->middleware(['auth:web,adm'])->name('historico.vendas');
 
+Route::post('gerar-pdf',[HistoricoVendasController::class, 'gerarPdf'])->middleware(['auth:web,adm'])->name('vendas.gerarPDF');
+
 require __DIR__.'/auth.php';

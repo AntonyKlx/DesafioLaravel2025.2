@@ -26,7 +26,7 @@ class VendaFactory extends Factory
             'produto_id' => $produtos->random(),
             'comprador_id' => $users->random(),
             'vendedor_id' => $users-> random(),
-            'data_venda' => $this->faker->dateTime(),
+            'data_venda' => $this->faker->dateTimeBetween('2024-01-01 00:00:00', 'now'),
             'valor' => $this->faker-> randomFloat(2, 10, 1000),
         ];
     }

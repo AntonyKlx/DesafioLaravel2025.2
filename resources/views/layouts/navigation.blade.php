@@ -20,8 +20,11 @@
                     <x-nav-link :href="route('pagina-inicial') " :active="request()->routeIs('pagina-inicial')">
                         {{ __('Pagina Inicial') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('gerenciador.produtos') " :active="request()->routeIs('pagina-inicial')">
+                    <x-nav-link :href="route('gerenciador.produtos') " :active="request()->routeIs('gerenciador-produtos')">
                         {{ __('Gerenciar produtos') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('historico.vendas') " :active="request()->routeIs('historico-vendas')">
+                        {{ __('Historico de vendas') }}
                     </x-nav-link>
                 </div>
             </div>
