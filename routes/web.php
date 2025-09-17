@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaginaInicialController;
 use App\Http\Controllers\ProdutoPageController;
 use App\Http\Controllers\ProdutosController;
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,8 +56,16 @@ Route::put('edit-produto/{produto}', [ProdutosController::class, 'update'])->mid
 
 Route::delete('delete-produto/{id}', [ProdutosController::class, 'destroy'])->middleware(['auth:web,adm'])->name('produto.delete');
 
+
 Route::get('historico-vendas', [HistoricoVendasController::class, 'index'])->middleware(['auth:web,adm'])->name('historico.vendas');
 
 Route::post('gerar-pdf',[HistoricoVendasController::class, 'gerarPdf'])->middleware(['auth:web,adm'])->name('vendas.gerarPDF');
+
+
+Route::get('gerenciador-usuarios', [UsuariosController::class, 'index'])->middleware(('auth:web,adm'))->name('gerenciador.usuarios');
+
+Route::get('user-show/{id}', [UsuariosController::class, 'show'])->middleware(['auth:web,adm'])->name('user.show');
+
+
 
 require __DIR__.'/auth.php';
