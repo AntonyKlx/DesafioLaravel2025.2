@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('quantidade');
             $table->unsignedBigInteger('categoria_id');
             $table->foreign('categoria_id')->references('id_categoria')->on('categoria');
-            $table->foreignId('anunciante_id')->constrained('users');
+            $table->foreignId('anunciante_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

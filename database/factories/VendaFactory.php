@@ -20,14 +20,15 @@ class VendaFactory extends Factory
     {
 
 
-        $produtos = Produto::pluck('id');
+        $produtos = Produto::inRandomOrder()->first();
+        $comprador = User::where('id', '!=', $produtos->anunciante_id)->inRandomOrder()->first();
         $users = User::pluck('id');
         return [
             'produto_id' => $produtos->random(),
-            'comprador_id' => $users->random(),
-            'vendedor_id' => $users-> random(),
+            'comprador_id' => $comprador->id,
+            'vendedor_id' => $produtos->anunciante_id,
             'data_venda' => $this->faker->dateTimeBetween('2024-01-01 00:00:00', 'now'),
-            'valor' => $this->faker-> randomFloat(2, 10, 1000),
+            'valor' => $produtos->preco,
         ];
     }
 }
