@@ -24,7 +24,7 @@ class VendaFactory extends Factory
         $comprador = User::where('id', '!=', $produtos->anunciante_id)->inRandomOrder()->first();
         $users = User::pluck('id');
         return [
-            'produto_id' => $produtos->random(),
+            'produto_id' => $produtos->id,
             'comprador_id' => $comprador->id,
             'vendedor_id' => $produtos->anunciante_id,
             'data_venda' => $this->faker->dateTimeBetween('2024-01-01 00:00:00', 'now'),
