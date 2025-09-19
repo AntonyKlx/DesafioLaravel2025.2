@@ -66,6 +66,12 @@ Route::get('gerenciador-usuarios', [UsuariosController::class, 'index'])->middle
 
 Route::get('user-show/{id}', [UsuariosController::class, 'show'])->middleware(['auth:web,adm'])->name('user.show');
 
+Route::get('create-user', [UsuariosController::class, 'create'])->middleware(['auth:web,adm'])->name('user.create');
+Route::post('create-user', [UsuariosController::class, 'store']);
 
+Route::get('edit-user/{user}', [UsuariosController::class, 'edit'])->middleware(['auth:web,adm'])->name('user.edit');
+Route::put('edit-user/{user}', [UsuariosController::class, 'update'])->middleware(['auth:web,adm'])->name('user.update');
+
+Route::delete('delete-user/{id}', [UsuariosController::class, 'destroy'])->middleware(['auth:web,adm'])->name('user.delete');
 
 require __DIR__.'/auth.php';

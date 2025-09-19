@@ -1,9 +1,8 @@
 <x-app-layout>
     <div>
         <div class="flex justify-center p-10">
-            <p class=" font-black text-white text-2xl">Gerenciar produtos</p>
+            <p class=" font-black text-white text-2xl">Gerenciar usuários</p>
         </div>
-        @if (isUserLoggedIn())
             <div class="flex justify-end mx-36 mb-7">
                 <a href="{{route('user.create')}}">
                     <span class=" bg-purple-500 p-3 rounded w-fit">
@@ -11,7 +10,6 @@
                     </span>
                 </a>
             </div>
-        @endif
         <div>
             <div class="flex justify-center">
                 <table class=" w-5/6 text-center items-center h-full">
@@ -34,8 +32,8 @@
                                 <td>{{ $user->email }}</td>
                                 <td class="flex gap-5 justify-center my-1">
                                     <a href="{{ route('user.show', ['id' => $user->id]) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Visualizar</a>
-                                    {{-- <a href="{{ route('user.edit', $user) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Editar</a> --}}
-                                    <form action="{{route('produto.delete', $user->id)}}" method="POST">
+                                    <a href="{{ route('user.edit', $user) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Editar</a>
+                                    <form action="{{route('user.delete', $user->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" href="" class=" bg-purple-500 text-white rounded px-3 py-2">Apagar</button>

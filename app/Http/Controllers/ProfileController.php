@@ -32,6 +32,17 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
+        $user = $request->user();
+        if ($request->hasFile('foto')) {
+            if ($user->foto && file_exists(public_path($user->foto))) {
+                unlink(public_path($user->foto));
+            }
+            $arquivo = $request->file('foto');
+            $nomeArquivo = uniqid() . '-msflix.' . $arquivo->getClientOriginalExtension();
+            $arquivo->move(public_path('user'), $nomeArquivo);
+            $user->foto = 'user/' . $nomeArquivo;
+        }
+
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
