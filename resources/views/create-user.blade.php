@@ -7,28 +7,28 @@
         <div class="py-3 bg-slate-800 m-5 rounded-xl gap-6 w-2/3 px-7">
             <form action="create-user" method="POST" enctype="multipart/form-data" class="w-full">
                 @csrf
-                <div class="flex justify-between w-full border">
+                <div class="flex justify-between w-full border ">
                     <div class="w-2/3">
-                        <div class="w-full">
-                            <label for="name" class="flex">Nome</label>
+                        <div class="w-full ">
+                            <label for="name" class="flex text-white">Nome</label>
                             <input id="name" name="name" type="text" placeholder="Nome do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="email" class="flex">Email</label>
+                            <label for="email" class="flex text-white">Email</label>
                             <input id="email" name="email" type="text" placeholder="Email do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="password" class="flex">Senha</label>
+                            <label for="password" class="flex text-white">Senha</label>
                             <input id="password" name="password" type="password" placeholder="Senha do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="cep" class="flex">Cep</label>
+                            <label for="cep" class="flex text-white ">Cep</label>
                             <input id="cep" name="cep" type="text" placeholder="Cep do usuário"
                                 class="w-full">
                         </div>
@@ -36,49 +36,50 @@
 
                     <div class=" w-1/3">
                         <div class="w-full">
-                            <label for="logradouro" class="flex">Logradouro</label>
+                            <label for="logradouro" class="flex text-white">Logradouro</label>
                             <input id="logradouro" name="logradouro" type="text" placeholder="Logradouro do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="bairro" class="flex">Bairro</label>
+                            <label for="bairro" class="flex text-white">Bairro</label>
                             <input id="bairro" name="bairro" type="text" placeholder="Bairro do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="cidade" class="flex">Cidade</label>
+                            <label for="cidade" class="flex text-white">Cidade</label>
                             <input id="cidade" name="cidade" type="text" placeholder="Cidade do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="estado" class="flex">Estado</label>
+                            <label for="estado" class="flex text-white">Estado</label>
                             <input id="estado" name="estado" type="text" placeholder="Estado do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="complemento" class="flex">Complemento</label>
+                            <label for="complemento" class="flex text-white">Complemento</label>
                             <input id="complemento" name="complemento" type="text"
                                 placeholder="Complemento do usuário" class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="telefone" class="flex">Telefone</label>
+                            <label for="telefone" class="flex text-white">Telefone</label>
                             <input id="telefone" name="telefone" type="text" placeholder="Telefone do usuário"
                                 class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="data_de_nascimento" class="flex">Data de nascimento do usuário</label>
+                            <label for="data_de_nascimento" class="flex text-white">Data de nascimento do
+                                usuário</label>
                             <input id="data_de_nascimento" name="data_de_nascimento" type="date"
                                 placeholder="data_de_nascimento do usuário" class="w-full">
                         </div>
 
                         <div class="w-full">
-                            <label for="cpf" class="flex">Cpf do usuário</label>
+                            <label for="cpf" class="flex text-white">Cpf do usuário</label>
                             <input id="cpf" name="cpf" type="text" placeholder="cpf do usuário"
                                 class="w-full">
                         </div>
@@ -106,4 +107,35 @@
             </form>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cepInput = document.getElementById('cep');
+
+            if (cepInput) {
+                cepInput.addEventListener('blur', async function(e) {
+                    const cep = e.target.value.replace(/\D/g, '');
+
+                    if (cep.length === 8) {
+                        try {
+                            const response = await fetch(`/api/cep/${cep}`);
+                            const data = await response.json();
+
+                            if (data.error) {
+                                alert('CEP não encontrado!');
+                                return;
+                            }
+                            document.getElementById('logradouro').value = data.logradouro || '';
+                            document.getElementById('bairro').value = data.bairro || '';
+                            document.getElementById('cidade').value = data.localidade || '';
+                            document.getElementById('estado').value = data.uf || '';
+                        } catch (error) {
+                            console.error('Erro ao buscar CEP:', error);
+                            alert('Erro ao buscar CEP. Tente novamente.');
+                        }
+                    }
+                });
+            }
+        });
+    </script>
 </x-app-layout>

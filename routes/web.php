@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CepController;
 use App\Http\Controllers\HistoricoVendasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaginaInicialController;
@@ -73,5 +74,8 @@ Route::get('edit-user/{user}', [UsuariosController::class, 'edit'])->middleware(
 Route::put('edit-user/{user}', [UsuariosController::class, 'update'])->middleware(['auth:web,adm'])->name('user.update');
 
 Route::delete('delete-user/{id}', [UsuariosController::class, 'destroy'])->middleware(['auth:web,adm'])->name('user.delete');
+
+Route::get('api/cep/{cep}', [CepController::class, 'show']);
+
 
 require __DIR__.'/auth.php';
