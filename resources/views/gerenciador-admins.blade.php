@@ -32,7 +32,9 @@
                                 <td>{{ $admin->email }}</td>
                                 <td class="flex gap-5 justify-center my-1">
                                     <a href="{{ route('admin.show', ['id' => $admin->id]) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Visualizar</a>
-                                    {{-- <a href="{{ route('admin.edit', $admin) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Editar</a> --}}
+                                    @if ($admin->id == Auth::id() || $admin->criado_por_id == Auth::id())
+                                        <a href="{{ route('admin.edit', $admin) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Editar</a>
+                                    @endif
                                     {{-- <form action="{{route('admin.delete', $admin->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf

@@ -73,13 +73,58 @@ class AdminsController extends Controller
         $admin->telefone = $request->telefone;
         $admin->data_de_nascimento = $request->data_de_nascimento;
         $admin->cpf = $request->cpf;
-        $admin->criado_por_id = Auth::id();
+        $admin->criado_por_id = Auth::guard('adm')->id();
 
         $admin->save();
 
-         return redirect()->route('gerenciador.admins')->with('success', 'Administrador criado com sucesso!');
+         return redirect()->route('gerenciador.admins');
+    }
 
-        return redirect()->back()->withInput()->with('error', 'Ocorreu um erro ao criar o administrador. Por favor, tente novamente.');
+    public function edit(Admin $admin)
+    {
+        return view('edit-admin', [
+            'admin' => $admin,
+        ]);
+    }
+
+    public function update(Request $request, Admin $admin)
+    {
+        if($admin->id != Auth::id() && $admin->criado_por_id != Auth::id()){
+            return redirect()->route('gerenciador.admins');
+        }
+
+        $validatedData = $request->validate([
+            'name' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'max:255'],
+            'password' => ['nullable', 'string', 'max:255'],
+            'cep' => ['nullable', 'string', 'max:20'],
+            'logradouro' => ['nullable', 'string', 'max:255'],
+            'bairro' => ['nullable', 'string', 'max:255'],
+            'cidade' => ['nullable', 'string', 'max:255'],
+            'estado' => ['nullable', 'string', 'max:2'],
+            'telefone' => ['nullable', 'string', 'max:25'],
+            'data_de_nascimento'=> ['nullable', 'date'],
+            'cpf' => ['nullable', 'string', 'max:11'],
+            'foto' => ['nullable', 'image', 'max:2048'],
+        ]);
+
+        $data = $validatedData;
+
+        if ($request->hasFile('foto')) {
+            if ($admin->foto && file_exists(public_path($admin->foto))) {
+                unlink(public_path($admin->foto));
+            }
+            $arquivo = $request->file('foto');
+            $nomeArquivo = uniqid() . '-msflix.' . $arquivo->getClientOriginalExtension();
+            $arquivo->move(public_path('admin'), $nomeArquivo);
+            $data['foto'] = 'admin/' . $nomeArquivo;
+        } else {
+            $data['foto'] = $admin->foto;
+        }
+
+        $admin->update($data);
+
+        return redirect()->route('gerenciador.admins');
     }
 }
 

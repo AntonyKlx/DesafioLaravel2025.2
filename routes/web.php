@@ -86,4 +86,7 @@ Route::get('admin-show/{id}', [AdminsController::class, 'show'])->middleware(['a
 Route::get('create-admin', [AdminsController::class, 'create'])->middleware(['auth:web,adm'])->name('admin.create');
 Route::post('create-admin', [AdminsController::class, 'store']);
 
+Route::get('edit-admin/{admin}', [AdminsController::class, 'edit'])->middleware(['auth:web,adm'])->name('admin.edit');
+Route::put('edit-admin/{admin}', [AdminsController::class, 'update'])->middleware(['auth:web,adm'])->name('admin.update');
+
 require __DIR__.'/auth.php';
