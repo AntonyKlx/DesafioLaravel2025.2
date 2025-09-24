@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\Api\CepController;
 use App\Http\Controllers\HistoricoVendasController;
 use App\Http\Controllers\ProfileController;
@@ -63,7 +64,7 @@ Route::get('historico-vendas', [HistoricoVendasController::class, 'index'])->mid
 Route::post('gerar-pdf',[HistoricoVendasController::class, 'gerarPdf'])->middleware(['auth:web,adm'])->name('vendas.gerarPDF');
 
 
-Route::get('gerenciador-usuarios', [UsuariosController::class, 'index'])->middleware(('auth:web,adm'))->name('gerenciador.usuarios');
+Route::get('gerenciador-usuarios', [UsuariosController::class, 'index'])->middleware(['auth:web,adm'])->name('gerenciador.usuarios');
 
 Route::get('user-show/{id}', [UsuariosController::class, 'show'])->middleware(['auth:web,adm'])->name('user.show');
 
@@ -77,5 +78,12 @@ Route::delete('delete-user/{id}', [UsuariosController::class, 'destroy'])->middl
 
 Route::get('api/cep/{cep}', [CepController::class, 'show']);
 
+
+Route::get('gerenciador-admins', [AdminsController::class, 'index'])->middleware(['auth:web,adm'])->name('gerenciador.admins');
+
+Route::get('admin-show/{id}', [AdminsController::class, 'show'])->middleware(['auth:web,adm'])->name('admin.show');
+
+Route::get('create-admin', [AdminsController::class, 'create'])->middleware(['auth:web,adm'])->name('admin.create');
+Route::post('create-admin', [AdminsController::class, 'store']);
 
 require __DIR__.'/auth.php';

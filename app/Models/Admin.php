@@ -25,6 +25,7 @@ class Admin extends Authenticatable
         'data_de_nascimento',
         'cpf',
         'foto',
+        'criado_por_id'
     ];
 
     protected $hidden = [
