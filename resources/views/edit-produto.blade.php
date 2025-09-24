@@ -5,6 +5,15 @@
 
     <div class="flex justify-center mx-auto px-4">
         <div class="py-3 flex bg-slate-800 m-5 rounded-xl gap-6 w-2/3 px-7">
+            @if ($errors->any())
+                <div class="bg-red-500 text-white p-3 rounded mb-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('produto.update', $produto->id) }}" method="POST" enctype="multipart/form-data" class="w-full">
                 @csrf
                 @method('PUT')

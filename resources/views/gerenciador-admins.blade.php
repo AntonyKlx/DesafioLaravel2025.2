@@ -34,12 +34,12 @@
                                     <a href="{{ route('admin.show', ['id' => $admin->id]) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Visualizar</a>
                                     @if ($admin->id == Auth::id() || $admin->criado_por_id == Auth::id())
                                         <a href="{{ route('admin.edit', $admin) }}" class=" bg-purple-500 text-white rounded px-3 py-2">Editar</a>
-                                    @endif
-                                    {{-- <form action="{{route('admin.delete', $admin->id)}}" method="POST">
+                                    <form action="{{route('admin.delete', $admin->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" href="" class=" bg-purple-500 text-white rounded px-3 py-2">Apagar</button>
-                                    </form> --}}
+                                    </form>
+                                    @endif
                                 </td>
                             </tr>
                             <tr></tr>

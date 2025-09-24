@@ -38,7 +38,7 @@ class AdminsController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'unique:admins,email'],
             'password' => ['required', 'string', 'max:255'],
             'cep' => ['required', 'string', 'max:20'],
             'logradouro' => ['required', 'string', 'max:255'],
@@ -95,7 +95,7 @@ class AdminsController extends Controller
 
         $validatedData = $request->validate([
             'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'max:255'],
+            'email' => ['nullable', 'string', 'max:255', 'unique:admins,email'],
             'password' => ['nullable', 'string', 'max:255'],
             'cep' => ['nullable', 'string', 'max:20'],
             'logradouro' => ['nullable', 'string', 'max:255'],
@@ -124,6 +124,21 @@ class AdminsController extends Controller
 
         $admin->update($data);
 
+        return redirect()->route('gerenciador.admins');
+    }
+
+    public function destroy($id){
+        $admin = Admin::find($id);
+
+         if ($admin->foto) {
+            $foto = public_path($admin->foto);
+
+            if (file_exists($foto)) {
+                unlink($foto);
+            }
+        }
+
+        $admin->delete();
         return redirect()->route('gerenciador.admins');
     }
 }

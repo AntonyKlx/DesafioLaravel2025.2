@@ -18,7 +18,10 @@
                         </x-nav-link>
                         <x-nav-link :href="route('gerenciador.usuarios') " :active="request()->routeIs('gerenciador-usuarios')">
                         {{ __('Gerenciador de usuários') }}
-                    </x-nav-link>
+                        </x-nav-link>
+                        <x-nav-link :href="route('gerenciador.admins') " :active="request()->routeIs('gerenciador-admins')">
+                        {{ __('Gerenciador de administradores') }}
+                        </x-nav-link>
                     @endif
                     <x-nav-link :href="route('pagina-inicial') " :active="request()->routeIs('pagina-inicial')">
                         {{ __('Pagina Inicial') }}
