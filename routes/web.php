@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CepController;
 use App\Http\Controllers\HistoricoVendasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaginaInicialController;
+use App\Http\Controllers\PagSeguroController;
 use App\Http\Controllers\ProdutoPageController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
@@ -90,5 +91,8 @@ Route::get('edit-admin/{admin}', [AdminsController::class, 'edit'])->middleware(
 Route::put('edit-admin/{admin}', [AdminsController::class, 'update'])->middleware(['auth:web,adm'])->name('admin.update');
 
 Route::delete('delete-admin/{id}', [AdminsController::class, 'destroy'])->middleware(['auth:web,adm'])->name('admin.delete');
+
+
+Route::post('/checkout', [PagSeguroController::class, 'createCheckout']);
 
 require __DIR__.'/auth.php';

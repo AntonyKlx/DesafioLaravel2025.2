@@ -5,7 +5,7 @@
                 <div class="w-full h-auto">
                     <img src="{{ asset($produto->foto) }}" alt="foto" class="">
                     <div class=" font-normal text-base text-white">
-                        <p>{{$produto->descricao}}</p>
+                        <p>{{ $produto->descricao }}</p>
                     </div>
                 </div>
             </div>
@@ -19,12 +19,15 @@
                         <p>Telefone: {{ $produto->user->telefone }}</p>
                     </div>
                     <p>{{ $produto->categoria->nome }}</p>
-                     @if(isUserLoggedIn() == 'user')
-                    <a href="" class="">
-                        <div class="bg-lime-500 p-4 font-extrabold text-white rounded">
-                            Comprar
-                        </div>
-                    </a>
+                    @if (isUserLoggedIn() == 'user')
+                        <form action="/checkout" method="POST">
+                            @csrf
+                            <input type="hidden" name = "comprar" value="{{json_encode($produto)}}">
+                            <input type="hidden" name="quantidade" value="1">
+                                <button type="submit" class="bg-lime-500 p-4 font-extrabold text-white rounded">
+                                    Comprar
+                                </button>
+                        </form>
                     @endif
                 </div>
             </div>

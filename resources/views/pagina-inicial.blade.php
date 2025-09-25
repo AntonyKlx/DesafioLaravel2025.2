@@ -54,11 +54,14 @@
                         </div>
                     @if (Auth::guard('web')->check())
                         <div class="flex justify-center my-7">
-                            <a href="">
-                                <span class="bg-lime-500 p-4 font-extrabold text-white rounded">
+                            <form action="/checkout" method="POST">
+                            @csrf
+                            <input type="hidden" name = "comprar" value="{{json_encode($produto)}}">
+                            <input type="hidden" name="quantidade" value="1">
+                                <button type="submit" class="bg-lime-500 p-4 font-extrabold text-white rounded">
                                     Comprar
-                                </span>
-                            </a>
+                                </button>
+                        </form>
                         </div>
                     @endif
                 </div>
