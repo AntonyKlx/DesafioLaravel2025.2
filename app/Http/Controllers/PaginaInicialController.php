@@ -20,9 +20,6 @@ class PaginaInicialController extends Controller
         if($termoDePesquisa){
             $query->where('nome', 'like', '%' . $termoDePesquisa . '%');
         }
-        // $produto = Produto::where('nome', 'like', '%' . $termoDePesquisa . '%')
-        //     ->orderByDesc('created_at')
-        //     ->get();
         if($categoriaId){
             $query->where('id_categoria', $categoriaId);
         }

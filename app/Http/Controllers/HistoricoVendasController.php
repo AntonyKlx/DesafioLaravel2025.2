@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HistoricoVendasController extends Controller
 {
@@ -20,8 +21,12 @@ class HistoricoVendasController extends Controller
         } else {
             $vendas = Venda::where('vendedor_id', $user->id)->paginate(9);
         }
+
+        $chart = $this->chart();
+
         return view('historico-vendas', [
             'vendas' => $vendas,
+            'chart' => $chart
         ]);
     }
 
@@ -46,5 +51,26 @@ class HistoricoVendasController extends Controller
         ]);
 
         return $pdf->stream('historico-vendas');
+    }
+
+    public function chart()
+    {
+
+        $userId = Auth::id();
+
+        $chart_options =[
+        'chart_title' => 'Gráfico de Vendas',
+        'model' => 'App\Models\Venda',
+        'chart_type' => 'line',
+        'where_raw' => "vendedor_id = $userId",
+        'report_type' => 'group_by_date',
+        'group_by_field' => 'data_venda',
+        'group_by_period' => 'month',
+        'chart_color' => '168,85,247',
+        ];
+
+        $chart = new LaravelChart($chart_options);
+
+        return $chart;
     }
 }

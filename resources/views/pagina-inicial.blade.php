@@ -13,7 +13,7 @@
                 <span class="flex justify-center pt-5">
                     <input type="text" name="pesquisa" placeholder="Pesquisar produto..."
                         class=" p-2 w-1/2 rounded-l-lg">
-                    <button type="submit" class= "text-white font-bold p-2 bg-blue-600 rounded-r-lg">Pesquisar</button>
+                    <button type="submit" class= "text-white font-bold p-2 bg-purple-500 rounded-r-lg">Pesquisar</button>
                 </span>
                 <h1 class="text-white justify-center flex font-black m-3">Categorias</h1>
                 <div class="flex justify-center gap-4 border border-green-600 ">

@@ -24,8 +24,8 @@ Route::get('/dashboard', function () {
 
 Route::prefix('adm')->group(callback: function (){
     Route::get('/dashboard', action: function (){
-        return view('admin.dashboard');
-    })->middleware('admin')->name('admin.dashboard');
+        return view('pagina-inicial');
+    })->middleware('admin')->name('pagina-inicial');
 });
 
 Route::middleware('auth')->group(function () {
@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
 
 });
 
-Route::get('/produtos', [PaginaInicialController::class, 'index'])->name('produtos.index');
+Route::get('produto', [PaginaInicialController::class, 'index'])->middleware(['auth:web,adm'])->name('produtos.index');
 
 Route::get('/categorias/{id}', [PaginaInicialController::class, 'categoria'])->name('produtos.categoria');
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produto;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Categoria;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
@@ -26,8 +27,11 @@ class ProdutosController extends Controller
             $produtos = Produto::where('anunciante_id', $user->id)->paginate(9);
         }
 
+        $chart = $this->chart();
+
         return view('gerenciador-produtos', [
             'produtos' => $produtos,
+            'chart' => $chart
         ]);
     }
 
@@ -93,7 +97,7 @@ class ProdutosController extends Controller
 
     public function update(Request $request, Produto $produto)
     {
-        $preco = str_replace(',', '.', $request->preco);
+        // $preco = str_replace(',', '.', $request->preco);
         $validatedData = $request->validate([
             'nome' => ['nullable', 'string', 'max:255'],
             'preco' => ['nullable', 'numeric', 'min:0'],
@@ -135,5 +139,23 @@ class ProdutosController extends Controller
 
         $produto->delete();
         return redirect()->route('gerenciador.produtos');
+    }
+
+    public function chart()
+    {
+
+        $chart_options =[
+        'chart_title' => 'Gráfico de Produtos',
+        'model' => 'App\Models\Produto',
+        'chart_type' => 'bar',
+        'report_type' => 'group_by_date',
+        'group_by_field' => 'created_at',
+        'group_by_period' => 'month',
+        'chart_color' => '168,85,247',
+        ];
+
+        $chart = new LaravelChart($chart_options);
+
+        return $chart;
     }
 };

@@ -3,6 +3,7 @@
         <div class="flex justify-center p-10">
             <p class=" font-black text-white text-2xl">Gerenciar produtos</p>
         </div>
+
         @if (isUserLoggedIn())
             <div class="flex justify-end mx-36 mb-7">
                 <a href="{{route('produto.create')}}">
@@ -52,5 +53,12 @@
             {{ $produtos->appends(request()->query())->links() }}
         </div>
 
+        @if (isAdminLoggedIn())
+        <div class="flex w-2/3 mx-auto">
+            {!! $chart->renderHtml() !!}
+            {!! $chart->renderChartJsLibrary() !!}
+            {!! $chart->renderJs() !!}
+        </div>
+        @endif
     </div>
 </x-app-layout>

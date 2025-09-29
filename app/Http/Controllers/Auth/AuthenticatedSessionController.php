@@ -17,7 +17,7 @@ class AuthenticatedSessionController extends Controller
     public function create(): View | RedirectResponse
     {
         if(Auth::guard('adm')->check())
-            return redirect() -> route('admin.dashboard');
+            return redirect() -> route('pagina-inicial');
         return view('auth.login');
     }
 
@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()-> route ( 'pagina-inicial');
 
          else if(auth('adm')->attempt($request->only( ['email','password'])))
-            return redirect()-> route ( 'admin.dashboard');
+            return redirect()-> route ( 'pagina-inicial');
 
          return back()->withErros("Credenciais não cadastradas no sitema.");
          // $request->authenticate();

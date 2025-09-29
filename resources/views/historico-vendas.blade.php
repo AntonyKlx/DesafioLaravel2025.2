@@ -3,6 +3,7 @@
         <div class="flex justify-center p-10">
             <p class="font-black text-white text-2xl">Histórico de Vendas</p>
         </div>
+
         <div>
             <div class="flex justify-center">
                 <table class="w-5/6 text-center items-center h-full">
@@ -63,5 +64,13 @@
         <div class="flex justify-center mt-4 p-10">
             {{ $vendas->appends(request()->query())->links() }}
         </div>
+
+         @if (isUserLoggedIn())
+        <div class="flex w-2/3 mx-auto">
+            {!! $chart->renderHtml() !!}
+            {!! $chart->renderChartJsLibrary() !!}
+            {!! $chart->renderJs() !!}
+        </div>
+        @endif
     </div>
 </x-app-layout>
