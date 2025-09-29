@@ -1,7 +1,7 @@
 <x-app-layout>
     <div>
         <div class="flex justify-center p-10">
-            <p class="font-black text-white text-2xl">Histórico de Vendas</p>
+            <p class="font-black text-white text-2xl">Histórico de Compras</p>
         </div>
         <div>
             <div class="flex justify-center">

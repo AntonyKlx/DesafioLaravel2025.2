@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\Api\CepController;
 use App\Http\Controllers\HistoricoVendasController;
+use App\Http\Controllers\HistoricoComprasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PaginaInicialController;
 use App\Http\Controllers\PagSeguroController;
@@ -94,5 +95,7 @@ Route::delete('delete-admin/{id}', [AdminsController::class, 'destroy'])->middle
 
 
 Route::post('/checkout', [PagSeguroController::class, 'createCheckout']);
+
+Route::get('historico-compras', [HistoricoComprasController::class, 'index'])->middleware(['auth:web,adm'])->name('historico.compras');
 
 require __DIR__.'/auth.php';

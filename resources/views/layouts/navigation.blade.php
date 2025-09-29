@@ -13,9 +13,6 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if(isAdminLoggedIn())
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
                         <x-nav-link :href="route('gerenciador.usuarios') " :active="request()->routeIs('gerenciador-usuarios')">
                         {{ __('Gerenciador de usuários') }}
                         </x-nav-link>
@@ -32,6 +29,11 @@
                     <x-nav-link :href="route('historico.vendas') " :active="request()->routeIs('historico-vendas')">
                         {{ __('Historico de vendas') }}
                     </x-nav-link>
+                    @if(isUserLoggedIn())
+                    <x-nav-link :href="route('historico.compras')" :active="request()->routeIs('historico-compras')">
+                        {{__('Historico de compras') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
