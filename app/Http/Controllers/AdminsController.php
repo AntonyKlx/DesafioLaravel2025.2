@@ -6,6 +6,7 @@ use App\Models\Admin;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class AdminsController extends Controller
 {
@@ -95,7 +96,7 @@ class AdminsController extends Controller
 
         $validatedData = $request->validate([
             'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'max:255', 'unique:admins,email'],
+            'email' => ['nullable', 'string', 'max:255', Rule::unique('admins', 'email')->ignore($admin->id),],
             'password' => ['nullable', 'string', 'max:255'],
             'cep' => ['nullable', 'string', 'max:20'],
             'logradouro' => ['nullable', 'string', 'max:255'],
@@ -107,6 +108,12 @@ class AdminsController extends Controller
             'cpf' => ['nullable', 'string', 'max:11'],
             'foto' => ['nullable', 'image', 'max:2048'],
         ]);
+
+         if (empty($validatedData['password'])) {
+            unset($validatedData['password']);
+        } else {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        }
 
         $data = $validatedData;
 

@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="flex justify-center pt-5">
-        <p class="font-black text-white text-2xl">Editar usuário</p>
+        <p class="font-black text-white text-2xl">Editar administrador</p>
     </div>
 
     <div class="flex justify-center mx-auto px-4">
@@ -35,7 +35,7 @@
                         <div class="w-full">
                             <label for="password" class="flex">Senha</label>
                             <input id="password" name="password" type="password" placeholder="Senha do usuário"
-                                class="w-full" value="{{ $admin->password }}">
+                                class="w-full" value="">
                         </div>
 
                         <div class="w-full">

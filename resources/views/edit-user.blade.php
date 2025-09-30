@@ -34,7 +34,7 @@
                         <div class="w-full">
                             <label for="password" class="flex">Senha</label>
                             <input id="password" name="password" type="password" placeholder="Senha do usuário"
-                                class="w-full" value="{{ $user->password }}">
+                                class="w-full" value="">
                         </div>
 
                         <div class="w-full">

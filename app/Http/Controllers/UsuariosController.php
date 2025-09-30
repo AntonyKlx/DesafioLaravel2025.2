@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class UsuariosController extends Controller
 {
@@ -56,6 +56,7 @@ class UsuariosController extends Controller
             'foto' => ['nullable', 'image', 'max:2048'],
         ]);
 
+
         $user = new User();
         if ($request->hasFile('foto')) {
             $arquivo = $request->file('foto');
@@ -97,7 +98,7 @@ class UsuariosController extends Controller
     {
         $validatedData = $request->validate([
             'name' => ['nullable', 'string', 'max:255'],
-            'email' => ['nullable', 'string', 'max:255', 'unique:users,email'],
+            'email' => ['nullable', 'string', 'max:255', Rule::unique('admins', 'email')->ignore($user->id)],
             'password' => ['nullable', 'string', 'max:255'],
             'cep' => ['nullable', 'string', 'max:20'],
             'logradouro' => ['nullable', 'string', 'max:255'],
@@ -111,6 +112,12 @@ class UsuariosController extends Controller
             'saldo' => ['nullable', 'numeric', 'min:0'],
             'foto' => ['nullable', 'image', 'max:2048'],
         ]);
+
+        if (empty($validatedData['password'])) {
+            unset($validatedData['password']);
+        } else {
+            $validatedData['password'] = bcrypt($validatedData['password']);
+        }
 
         $data = $validatedData;
 
