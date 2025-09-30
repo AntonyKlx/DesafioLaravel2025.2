@@ -10,6 +10,7 @@ use App\Http\Controllers\PagSeguroController;
 use App\Http\Controllers\ProdutoPageController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -97,5 +98,8 @@ Route::delete('delete-admin/{id}', [AdminsController::class, 'destroy'])->middle
 Route::post('/checkout', [PagSeguroController::class, 'createCheckout']);
 
 Route::get('historico-compras', [HistoricoComprasController::class, 'index'])->middleware(['auth:web,adm'])->name('historico.compras');
+
+Route::get('enviar-email', [EmailController::class, 'index'])->middleware(['auth:web,adm'])->name('email.index');
+Route::post('enviar-email', [EmailController::class, 'store']);
 
 require __DIR__.'/auth.php';

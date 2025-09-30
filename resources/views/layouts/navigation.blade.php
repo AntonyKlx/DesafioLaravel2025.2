@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('gerenciador.admins') " :active="request()->routeIs('gerenciador-admins')">
                         {{ __('Gerenciador de administradores') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('email.index') " :active="request()->routeIs('enviar-email')">
+                        {{ __('Enviar email') }}
+                        </x-nav-link>
                     @endif
                     <x-nav-link :href="route('pagina-inicial') " :active="request()->routeIs('pagina-inicial')">
                         {{ __('Pagina Inicial') }}

@@ -35,23 +35,26 @@
                     </tbody>
                 </table>
             </div>
-            <div class=" mx-32 my-6">
+            <div class="flex justify-center pt-3">
+                {{ $vendas->appends(request()->query())->links() }}
+            </div>
+            <div class=" mx-32 pb-10">
                 <h1 class="flex text-white font-black text-2xl">
                     Gere um pdf das transações
                 </h1>
                 <form method="POST" action="{{ route('vendas.gerarPDF') }}">
                     @csrf
-                    <div class="">
-                        <span>
-                            <label class="text-white">Data inicio</label>
-                            <input type="date" name ="data_inicio" value="{{ request('data_inicio') }}">
-                        </span>
-                        <span>
-                            <label class="text-white">Data final</label>
-                            <input type="date" name="data_final" value="{{ request('data_final') }}">
-                        </span>
-                    </div>
-                    <div class="flex justify-end mb-7 my-7">
+                    <div class="flex justify-between">
+                        <div>
+                            <span>
+                                <label class="text-white">Data inicio</label>
+                                <input type="date" name ="data_inicio" value="{{ request('data_inicio') }}">
+                            </span>
+                            <span>
+                                <label class="text-white">Data final</label>
+                                <input type="date" name="data_final" value="{{ request('data_final') }}">
+                            </span>
+                        </div>
                         <button type="submit">
                             <span class=" bg-purple-500 p-3 rounded w-fit">
                                 GERAR PDF
@@ -61,16 +64,14 @@
                 </form>
             </div>
         </div>
-        <div class="flex justify-center mt-4 p-10">
-            {{ $vendas->appends(request()->query())->links() }}
-        </div>
 
-         @if (isUserLoggedIn())
-        <div class="flex w-2/3 mx-auto">
-            {!! $chart->renderHtml() !!}
-            {!! $chart->renderChartJsLibrary() !!}
-            {!! $chart->renderJs() !!}
-        </div>
+
+        @if (isUserLoggedIn())
+            <div class="flex w-2/3 mx-auto">
+                {!! $chart->renderHtml() !!}
+                {!! $chart->renderChartJsLibrary() !!}
+                {!! $chart->renderJs() !!}
+            </div>
         @endif
     </div>
 </x-app-layout>
