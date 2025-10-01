@@ -32,7 +32,7 @@ class AdminFactory extends Factory
             'telefone' => fake()->numerify('###########'),
             'data_de_nascimento' => fake()->date('Y-m-d', '2005-01-01'),
             'cpf' => fake()->numerify('###########'),
-            'foto' => 'default.png',
+            'foto' => 'images/PerfilDefault.png',
         ];
     }
 
