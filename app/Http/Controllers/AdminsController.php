@@ -60,7 +60,7 @@ class AdminsController extends Controller
 
             $admin->foto = 'admin/' . $nomeArquivo;
         } else {
-            $admin->foto = null;
+            $admin->foto = 'images/PerfilDefault.png';
         }
 
         $admin->name = $request->name;

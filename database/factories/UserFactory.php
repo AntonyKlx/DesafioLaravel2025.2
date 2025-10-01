@@ -39,7 +39,7 @@ class UserFactory extends Factory
             'data_de_nascimento' => fake()->date('Y-m-d', '2005-01-01'),
             'cpf' => fake()->numerify('###########'),
             'saldo' => fake()->randomFloat(2, 0, 1000),
-            'foto' => 'default.png',
+            'foto' => 'images/PerfilDefault.png',
         ];
     }
 

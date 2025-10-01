@@ -65,7 +65,7 @@ class UsuariosController extends Controller
 
             $user->foto = 'user/' . $nomeArquivo;
         } else {
-            $user->foto = null;
+            $user->foto = 'images/PerfilDefault.png';
         }
 
         $user->name = $request->name;
