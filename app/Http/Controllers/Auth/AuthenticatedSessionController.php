@@ -33,7 +33,7 @@ class AuthenticatedSessionController extends Controller
          else if(auth('adm')->attempt($request->only( ['email','password'])))
             return redirect()-> route ( 'pagina-inicial');
 
-         return back()->withErros("Credenciais não cadastradas no sitema.");
+         return back()->withErrors("Credenciais não cadastradas no sistema.");
          // $request->authenticate();
 
         // $request->session()->regenerate();
