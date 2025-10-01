@@ -1,14 +1,6 @@
 <x-app-layout>
-    <x-slot name="header">
-        {{-- <h2 class="font-semibold text-xl text-white text-red leading-tight">
-            {{ __('Bem vindo de volta '). \Auth::guard(name: 'web')->user()->name }}
-        </h2> --}}
-    </x-slot>
-
-
-
-    <div class=" border flex justify-center">
-        <div class="border border-red-500 w-full">
+    <div class=" flex justify-center">
+        <div class=" w-full">
             <form action="{{ route('produtos.index') }}">
                 <span class="flex justify-center pt-5">
                     <input type="text" name="pesquisa" placeholder="Pesquisar produto..."
@@ -16,7 +8,7 @@
                     <button type="submit" class= "text-white font-bold p-2 bg-purple-500 rounded-r-lg">Pesquisar</button>
                 </span>
                 <h1 class="text-white justify-center flex font-black m-3">Categorias</h1>
-                <div class="flex justify-center gap-4 border border-green-600 ">
+                <div class="flex justify-center gap-4 ">
                     <a href="{{ route('pagina-inicial') }}" class="p-2 bg-gray-200 rounded-lg">Todas</a>
                     @foreach ($categorias as $categoria)
                         <a href="{{ route('produtos.categoria', ['id' => $categoria->id_categoria]) }}"
@@ -38,14 +30,14 @@
         <div class=" flex flex-wrap gap-x-20">
             @foreach ($produtos as $produto)
                 <div class=" py-4 border border-slate-600 text-center w-1/4 mx-auto my-4 fill bg-slate-800 rounded-xl">
-                    <div class="text-black justify-center items-center border-2 border-red-600 mx-auto">
+                    <div class="text-black justify-center items-center  mx-auto">
                             <img class="w-full h-full" src="{{ asset($produto->foto) }}" alt="foto">
                     </div>
-                        <h3 class=" font-extrabold text-xl">{{ $produto->nome }}</h3>
-                        <p>Preço:
-                            <span class="font-bold text-lg"> R${{ $produto->preco }}</span>
+                        <h3 class=" font-extrabold text-xl text-white">{{ $produto->nome }}</h3>
+                        <p class="font-bold text-lg text-white">Preço:
+                            <span> R${{ $produto->preco }}</span>
                         </p>
-                        <div class="flex justify-center mt-4">
+                        <div class="flex justify-center mt-4 ">
                             <a href="{{ route('produto.page', ['id' => $produto->id]) }}">
                                 <span class=" bg-slate-200 p-2 text-lg font-bold rounded">
                                     Visulizar

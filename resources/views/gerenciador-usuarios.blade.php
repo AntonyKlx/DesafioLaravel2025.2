@@ -5,7 +5,7 @@
         </div>
             <div class="flex justify-end mx-36 mb-7">
                 <a href="{{route('user.create')}}">
-                    <span class=" bg-purple-500 p-3 rounded w-fit">
+                    <span class=" bg-purple-500 p-3 rounded w-fit text-white font-bold">
                         Criar
                     </span>
                 </a>

@@ -7,7 +7,7 @@
         @if (isUserLoggedIn())
             <div class="flex justify-end mx-36 mb-7">
                 <a href="{{route('produto.create')}}">
-                    <span class=" bg-purple-500 p-3 rounded w-fit">
+                    <span class=" bg-purple-500 p-3 rounded w-fit text-white font-bold">
                         Criar
                     </span>
                 </a>
@@ -24,7 +24,7 @@
                     </tr>
                     <tbody class=" p-7">
                         @if ($produtos->count() === 0)
-                            <div>
+                            <div class="text-white">
                                 Nenhum produto encontrado
                             </div>
                         @endif

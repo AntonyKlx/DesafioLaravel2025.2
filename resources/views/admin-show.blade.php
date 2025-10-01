@@ -6,7 +6,7 @@
     <div class="flex justify-center mx-auto px-4 w-10/12">
         <div class="p-3 flex flex-row bg-slate-800 w-full m-5 rounded-xl gap-6">
 
-            <div class=" w-4/6 flex flex-col gap-4 border border-red-600">
+            <div class=" w-4/6 flex flex-col gap-4 ">
                 <div class="w-full h-auto rounded ">
                     <img src="{{ asset($admin->foto) }}" alt="{{ $admin->name }}" class="w-full h-auto object-cover">
                 </div>
@@ -15,9 +15,9 @@
                 </div>
             </div>
 
-            <div class="w-11/12 border border-green-600 bg-slate-700 rounded-xl p-5">
+            <div class="w-11/12 bg-slate-700 rounded-xl p-5">
                 <h1 class="font-extrabold text-white text-3xl">{{$admin->name}}</h1>
-                <h3 class=" text-yellow-300 font-extrabold text-2xl">CPF: {{$admin->cpf}}</h3>
+                <h3 class=" text-white font-extrabold text-2xl">CPF: {{$admin->cpf}}</h3>
                 <h3 class="text-white font-semibold">Telefone: {{$admin->telefone}}</h3>
                 <h3 class="text-white font-semibold">Data de nascimento: {{$admin->data_de_nascimento}}</h3>
 
